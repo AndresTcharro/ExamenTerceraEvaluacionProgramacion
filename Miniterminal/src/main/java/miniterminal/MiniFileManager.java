@@ -46,7 +46,7 @@ public class MiniFileManager {
         return ruta;
     }
 //Método para que que nos movamos de directorio.
-    boolean changeDir(String ruta) throws FileNotFoundException {
+    public boolean changeDir(String ruta) throws FileNotFoundException {
         File nuevaruta = new File("C:\\Users\\DAW\\Desktop\\EjercioA3\\Libros");
         if (!nuevaruta.exists()) {
             throw new FileNotFoundException();
@@ -57,7 +57,7 @@ public class MiniFileManager {
     }
 
  //Método para imprimir la lista de directorios y archivos de la carpeta actual 
-    void printList(boolean info) throws FileNotFoundException {
+    public boolean printList(boolean info) throws FileNotFoundException { //Creamos esta función para listar la lista de "rutaActual"
         try {
             String ruta = rutaActual.getAbsolutePath();// creamos "ruta" para almacenar la "rutaActual"
             System.out.println(ruta);
@@ -70,15 +70,15 @@ public class MiniFileManager {
             }
              if (carpeta.isDirectory()) {   //Por otra parte si es un Directory  
                 System.out.println("Nombre del directorio donde nos encontramos: " + carpeta.getName()); 
-                for (File ruta2 : carpeta.listFiles()) {  //Creamos un "ruta2" para almacenar la lista de las carpetas dentro de la ruta 
+                for (File ruta2 : carpeta.listFiles()) {  //Creamos  "ruta2" para almacenar la lista de las carpetas dentro del Directorio en el que nos encontramos 
                     if (ruta2.isDirectory()) {
-                        System.out.println("Directorio: " + ruta2.getName());
+                        System.out.println("Directorio: " + ruta2.getName());//Imprimimos los nombres de los directorios 
                     }
 
                 }
-               for (File ruta3 : carpeta.listFiles()) {
+               for (File ruta3 : carpeta.listFiles()) {   //Creamos "ruta" para almacenar la lista de los ficheros que que tenemos dentro de "ruta" 
                     if (ruta3.isFile()) {
-                        System.out.println("Fichero: " + ruta3.getName());
+                        System.out.println("Fichero: " + ruta3.getName());//Imprimimos los ficheros con su nombre.
                     }
 
                 }
@@ -86,20 +86,19 @@ public class MiniFileManager {
             
         }catch (Exception e) {
          System.out.println("No hay elemenmtos dentro de la ruta actual");  }
+        return true;
     }
+
+    public boolean printListTamñoFecha (boolean info) throws FileNotFoundException{
+            String ruta = rutaActual.getAbsolutePath();
+            System.out.println(ruta);
+            File carpeta = new File (ruta);
+            return true;
+    }
+
 }
 
-/*
-public static String getPWD (String PWD) throws IOException{
- try {
-     File rutaActual = new File(""); 
-     PWD=rutaActual.getParent();
- }catch(Exception e){
-     System.out.println("La rutaActual no es valida, pruebe a intrioducir otra rutaActual");
- }
- return PWD;
-}
-}
+
 /**public boolean changeDir (String dir) {
    try  {
        File rutaActual = new File();
